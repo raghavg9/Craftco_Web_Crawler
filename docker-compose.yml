@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  test:
+    build: .
+    volumes:
+      - .:/app
+    working_dir: /app
+    entrypoint: python3 -m pytest unit_test.py
+  run:
+    build: .
+    volumes:
+      - .:/app
+      - ./data/raw:/app/data/raw
+      - ./data/extracted:/app/data/extracted
+      - ./data/statistics:/app/data/statistics
+    working_dir: /app
+    entrypoint: python3 app/run.py
