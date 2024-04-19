@@ -2,7 +2,7 @@
 
 # Description
 
-This is a coding exercise for a Data Engineer position at [Craft.co](http://craft.co/).
+This is a coding exercise for [Craft.co](http://craft.co/).
 
 ## Prerequisites
 
@@ -25,8 +25,6 @@ python app/run.py
 
 ### How to use Dockerized version of the environment
 
-> We recommend candidates utilize Docker for this assignment, though it is not mandatory. Adopting Docker ensures a consistent and isolated environment, which can be pivotal for seamless execution and testing.
-
 In order to use Dockerized environment, you have to build the docker image:
 
 ```
@@ -44,7 +42,7 @@ For your convenience you can also use the `Makefile` or `docker-compose` - we in
 ## Description of the problem
 
 The goal of this exercise is to parse and extract different statistics from the robots.txt files.
-We will use the data from the CommonCrawl project ([https://commoncrawl.org/](https://commoncrawl.org/)).
+I will use the data from the CommonCrawl project ([https://commoncrawl.org/](https://commoncrawl.org/)).
 CommonCrawl is a project that crawls the web and stores the data in a public S3 bucket using WARC format ([https://en.wikipedia.org/wiki/Web_ARChive](https://en.wikipedia.org/wiki/Web_ARChive)).
 
 The robots.txt ([https://en.wikipedia.org/wiki/Robots_exclusion_standard](https://en.wikipedia.org/wiki/Robots_exclusion_standard)) is a file that is used by web crawlers to identify which parts of the website should not be crawled. The file is located in the root of the website and it is expected to be in the following format:
@@ -54,22 +52,18 @@ User-agent: Googlebot
 Disallow: /images
 ```
 
-Questions to consider when working on your solution:
+Questions considered when I worked on my solution:
 
-- We expect the data to grow over time:
+- I expect the data to grow over time:
     - How do you propose to store data considering that we are expected to filter it by its fetched date?
-- How do you propose to test the script?
+- How do I propose to test the script?
     - Bonus points for providing unit tests
-- We want to run this script daily. How do you propose to parameterize it?
+- I want to run this script daily. How do I parameterize it?
     - Bonus points for adjusting the Dockerfile to make this ETL easier to run
 
 # Step 0
 
-Unzip the archive that you received by email.
-Complete the excercise.
-Compress it with ZIP and send it back to our recruiters. 
-
-Remember to adjust the requirements.txt by adding all the Python libraries you might need to complete the task.
+Add requirements.txt by adding all the Python libraries you might need to complete the task.
 
 # Step 1
 
@@ -79,7 +73,7 @@ Create a Python script that does the following:
 
 2. Extracts data from those files and saves it to `data/extracted/` directory.
 
-The WARC file contains three types of records which are designated by the `WARC-Type` field. We are interested only in the `response` type (and discard the `request` and `metadata` types).
+The WARC file contains three types of records which are designated by the `WARC-Type` field. I am interested only in the `response` type (and discard the `request` and `metadata` types).
 
 From the `response` records extract the following fields:
 
@@ -134,11 +128,11 @@ fetched_at,http_code,domain,user_agent,disallow_cnt,allow_cnt
 2023-04-02T10:55:08Z,200,Mediapartners-Google,young.tonymctony.com,2,0
 ```
 
-Note: You can choose any file format you are comfortable with just add one comment why you chose it.
+Note: I chose parquet for its capability to be sotred and accesed faster.
 
 # Step 2
 
-We are interested in gathering statistics about the daily runs. Provide the aggregates to a separate file that will contain:
+I am interested in gathering statistics about the daily runs. Providing the aggregates to a separate file that will contain:
 
 - date              - date of the fetched_at
 - total_errors      - number of responses that are not 200
@@ -148,8 +142,3 @@ We are interested in gathering statistics about the daily runs. Provide the aggr
 - total_disallows   - total sum of disallowed paths
 
 Save the output file to the `data/statistics/` directory.
-
-# Submitting the code
-
-Once completed, send us a compressed archive of your code.
-We will also appreciate feedback about this exercise so we can adjust it for future candidates.
